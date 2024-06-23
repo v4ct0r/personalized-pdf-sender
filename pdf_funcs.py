@@ -1,8 +1,5 @@
 import pdfplumber
 import os
-def remove_first_three(s):
-    return s[3:]
-
 
 def extract_transaction_details(pdf_path):
     full_text = ""
@@ -14,7 +11,7 @@ def extract_transaction_details(pdf_path):
     lines = full_text.split('\n')
     for line in lines:
         if 'ΑΙΤΙΟΛΟΓΙΑ' in line:
-           return remove_first_three(line[line.index('ΑΙΤΙΟΛΟΓΙΑ')+len('ΑΙΤΙΟΛΟΓΙΑ'):].strip())
+           return line[line.index('ΑΙΤΙΟΛΟΓΙΑ')+len('ΑΙΤΙΟΛΟΓΙΑ'):].strip()
 
     exit(1)
 
