@@ -1,5 +1,5 @@
 import os
-from extract import delete_pdf_files, extract_transaction_details , move_pdf_files
+from pdf_funcs import delete_pdf_files, extract_transaction_details , move_pdf_files
 from find_email import find_email 
 from find_email import is_valid_email
 from sent_email import send_email
@@ -45,8 +45,9 @@ print('\n')
 
 for client in clients:
     if clients[client]["valid_email"]:
+        clients[client]["name"] = client
+        print(f'Client: {clients[client]["name"]}')
         if(send_email(clients[client])):
-           # delete_pdf_files(clients[client]["pdf_paths"])
-            move_pdf_files(clients[client]["pdf_paths"], 'processed_transactions')
+            move_pdf_files(clients[client], 'processed_transactions')
 input("Press Enter to close the program")
 

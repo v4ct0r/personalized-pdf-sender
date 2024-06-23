@@ -35,7 +35,10 @@ import os
 import shutil
 import time
 from custom_exit import custom_exit
-def move_pdf_files(pdf_paths, destination_dir):
+
+
+def move_pdf_files(client, destination_dir):
+    pdf_paths = client["pdf_paths"]
     if not os.path.exists(destination_dir):
         os.makedirs(destination_dir)
     date_str = time.strftime("%d-%m-%Y")
@@ -45,7 +48,8 @@ def move_pdf_files(pdf_paths, destination_dir):
     for path in pdf_paths:
         try:
             filename = os.path.basename(path)
-            destination_path = os.path.join(destination_dir_with_date, filename)
+            new_filename = f"{client['name']}_{filename}"
+            destination_path = os.path.join(destination_dir_with_date, new_filename)  
             shutil.move(path, destination_path)
             print(f"Moved {path} to {destination_path}")
         except FileNotFoundError:

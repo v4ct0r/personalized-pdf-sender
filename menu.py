@@ -1,7 +1,7 @@
 #menu 
 import os
 from check_emails import check_emails
-from extract import extract_transaction_details
+from pdf_funcs import extract_transaction_details
 from find_email import find_email
 
 

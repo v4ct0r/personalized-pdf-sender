@@ -5,7 +5,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from custom_exit import custom_exit
 import os
-from extract import delete_pdf_files
+from pdf_funcs import delete_pdf_files
 
 
 def send_email(client):
