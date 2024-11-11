@@ -17,13 +17,6 @@ def send_email(client):
     if email_password is None:
         custom_exit("EMAIL_PASSWORD environment variable is not set.")
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
     print(f"Sending email to {client['email']}...")
     msg = MIMEMultipart()
     msg['From'] = email_address
