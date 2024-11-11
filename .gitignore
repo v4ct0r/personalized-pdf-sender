@@ -1,6 +1,7 @@
 build/
 dist/
-main.spec
+main.spec/
 temp/
 __pycache__/
-processed_transactions
+processed_transactions/
+transactions/ 

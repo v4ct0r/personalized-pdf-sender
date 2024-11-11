@@ -5,7 +5,6 @@ from email.mime.base import MIMEBase
 from email import encoders
 from custom_exit import custom_exit
 import os
-from pdf_funcs import delete_pdf_files
 
 
 def send_email(client):
@@ -14,20 +13,27 @@ def send_email(client):
     if email_address is None:
         custom_exit("EMAIL_ADDRESS environment variable is not set.")
 
-    # Correctly retrieve the EMAIL_PASSWORD environment variable
     email_password = os.environ.get('EMAIL_PASSWORD')
     if email_password is None:
         custom_exit("EMAIL_PASSWORD environment variable is not set.")
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
 
     print(f"Sending email to {client['email']}...")
     msg = MIMEMultipart()
     msg['From'] = email_address
     msg['To'] = client['email']
     msg['Subject'] = 'Transaction Details'
-    
-    body = ' '
-    msg.attach(MIMEText(body, 'plain'))
-    
+
+    text = "Please find the transaction details attached."
+    part1 = MIMEText(text, 'plain')
+    msg.attach(part1)
+
     for pdf_path in client['pdf_paths']:
         attachment = open(pdf_path, 'rb')
         part = MIMEBase('application', 'octet-stream')
@@ -35,9 +41,6 @@ def send_email(client):
         encoders.encode_base64(part)
         part.add_header('Content-Disposition', f'attachment; filename= {os.path.basename(pdf_path)}')
         msg.attach(part)
-    
-    import smtplib
-    from smtplib import SMTPException
     
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
