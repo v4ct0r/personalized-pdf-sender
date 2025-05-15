@@ -4,4 +4,3 @@ main.spec/
 temp/
 __pycache__/
 processed_transactions/
-transactions/ 
